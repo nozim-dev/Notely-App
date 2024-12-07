@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+@import "./variables";
+
+@mixin Header_S() {
+    font-family: $fontRoboto;
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 0.25px;
+}
+
+@mixin Header_XS() {
+    font-family: $fontRoboto;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 0.25px;
+}
+
+@mixin Body() {
+    font-family: $fontRoboto;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}
+
+@mixin Button() {
+    font-family: $fontRoboto;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 1.25px;
+    border: none;
+    cursor: pointer;
+}
+
+@mixin Caption() {
+    font-family: $fontRoboto;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.4px;
+}
+
+@mixin PrimaryButton() {
+    display: block;
+    width: 100%;
+    max-width: 90px;
+    padding: 12px 16px;
+    border-radius: 56px;
+    background-color: $blue400;
+    color: $white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    line-height: 24px;
+    @include Button();
+    transition: all .4s;
+
+    &:hover {
+        background-color: $blue500;
+    }
+
+    span {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@mixin DangerBtn() {
+    display: block;
+    width: 100%;
+    max-width: 84px;
+    padding: 10px 16px;
+    border-radius: 56px;
+    background-color: $red400;
+    color: $white;
+    line-height: 24px;
+    @include Button();
+    transition: all .4s;
+
+    &:hover {
+        background-color: $red500;
+    }
+}
+
+@mixin GhostBtn() {
+    display: block;
+    width: 100%;
+    max-width: 88px;
+    padding: 10px 16px;
+    color: $gray600;
+    line-height: 24px;
+    @include Button();
+    transition: all .4s;
+
+    &:hover {
+        color: $gray900_87;
+    }
+}
+
+@mixin IconBtn() {
+    display: block;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $gray600;
+    background-color: $white;
+    line-height: 24px;
+    border-radius: 50%;
+    @include Button();
+    transition: all .4s;
+
+    &:hover {
+        background-color: $black_12;
+    }
+}
+
+@mixin Input() {
+    display: block;
+    width: 100%;
+    border-radius: 8px;
+    background-color: $gray200;
+    padding: 12px;
+    border: 1px solid $black_12;
+    @include Body();
+    color: $gray900_87;
+
+    &::placeholder {
+        @include Body();
+        line-height: 24px;
+        color: $gray900_60;
+    }
+
+    &:active {
+        border-color: $blue400;
+        color: $gray900_87;
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.Container {
+    position: relative;
+}
+
+main {
+    background-color: $gray200;
+    padding-top: 30px;
+
+    .cart_row {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 22px 24px;
+        width: 100%;
+        max-width: 1256px;
+        margin: auto;
+        margin-top: 32px;
+        padding-bottom: 124px;
+    }
+}

@@ -1,0 +1,140 @@
+@import "../../style/style.scss";
+
+header {
+    width: 100%;
+    margin: auto;
+    padding: 17px 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 20px 0 #00000026;
+    position: relative;
+    z-index: 1;
+
+    .header_inside {
+        width: 100%;
+        max-width: 1256px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+
+        form {
+            width: 100%;
+            max-width: 1146px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 24px;
+            border-radius: 8px;
+            background-color: $gray200;
+            border: 1px solid $black_12;
+
+            input {
+                background-color: transparent;
+                border: none;
+                outline: none;
+                display: block;
+                width: 100%;
+                @include Body();
+                color: $gray900_87;
+
+                &::placeholder {
+                    @include Body();
+                    line-height: 24px;
+                    color: $gray900_60;
+                }
+            }
+
+            &:hover {
+                border-color: $blue400;
+                color: $gray900_87;
+            }
+
+            span {
+                width: 20px;
+                height: 20px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+
+        button {
+            @include PrimaryButton();
+        }
+    }
+}
+
+.header_tab {
+    width: 100%;
+    max-width: 1256px;
+    margin: auto;
+
+    h1 {
+        @include Header_S();
+        line-height: 33.6px;
+        color: $gray900;
+    }
+
+    .header_tab_box {
+        width: 100%;
+        margin-top: 30px;
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        align-items: center;
+
+        .header_tab_box_item {
+            width: 100%;
+            max-width: 416px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-bottom: 1px solid $black_12;
+
+            a {
+                display: block;
+                width: 100%;
+                max-width: 104px;
+                padding: 0 7px 8px 7px;
+                @include Button();
+                text-decoration: none;
+                color: $gray900_60;
+                transition: all .4s;
+                text-align: center;
+                border-bottom: 2px solid transparent;
+
+                &:first-of-type {
+                    color: $blue400;
+                    border-bottom: 2px solid $blue400;
+                }
+
+                &:hover {
+                    color: $blue400;
+                    border-bottom: 2px solid $blue400;
+                }
+            }
+        }
+
+        .header_tab_box_actionBtn {
+            width: 100%;
+            max-width: 257px;
+            padding: 8px 0;
+            display: flex;
+            gap: 19px;
+
+            input {
+                width: 18px;
+                height: 18px;
+            }
+
+            label {
+                @include Body();
+                color: $gray900_87;
+                cursor: pointer;
+                user-select: none;
+            }
+        }
+    }
+}

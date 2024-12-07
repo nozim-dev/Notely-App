@@ -1,0 +1,23 @@
+@import "../../style/style.scss";
+@import "../../style/variables";
+
+.NotFound {
+    width: 100%;
+    max-width: 640px;
+    margin: auto;
+    margin-top: 80px;
+
+    .NotFound_image {
+        width: 100%;
+        max-width: 206px;
+        margin: auto;
+    }
+
+    h1 {
+        margin-top: 20px;
+        @include Header_XS();
+        line-height: 33.6px;
+        color: $gray900;
+        text-align: center;
+    }
+}

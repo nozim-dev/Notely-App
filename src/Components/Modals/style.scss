@@ -1,0 +1,161 @@
+@import "../../style/style.scss";
+
+.Modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: $black_32;
+    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.15);
+    z-index: 99;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .Modal_insideBox {
+        width: 100%;
+        max-width: 616px;
+        background-color: white;
+        box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.15);
+        border-radius: 16px;
+        padding: 24px;
+
+        .Modal_insideBox_header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+
+            h1 {
+                @include Header_S();
+                line-height: 33.6px;
+                color: $gray900_87;
+            }
+
+            span {
+                @include IconBtn();
+            }
+        }
+
+        .Modal_insideBox_body {
+            margin-top: 24px;
+
+            .Modal_insideBox_body_top {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 24px;
+
+                .Modal_insideBox_body_top_inputTitle {
+                    width: 100%;
+                    max-width: 272px;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 4px;
+
+                    label {
+                        @include Body();
+                        line-height: 24px;
+                    }
+
+                    input {
+                        @include Input();
+                    }
+                }
+
+                .Modal_insideBox_body_top_inputCategory {
+                    width: 100%;
+                    max-width: 272px;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 4px;
+
+                    label {
+                        @include Body();
+                        line-height: 24px;
+                    }
+
+                    select {
+                        @include Input();
+                        padding-right: 16px;
+                    }
+                }
+            }
+
+            .Modal_insideBox_body_bottom {
+                margin-top: 31px;
+                width: 100%;
+
+                label {
+                    display: flex;
+                    justify-content: space-between;
+                    gap: 12px;
+
+                    p {
+                        @include Body();
+                        line-height: 24px;
+
+                        span {
+                            color: $gray900_60;
+                        }
+                    }
+
+                    h5 {
+                        font-size: 14px;
+                        line-height: 24px;
+                        letter-spacing: 0.25px;
+                        font-weight: normal;
+                        font-family: $fontRoboto;
+                        color: $gray900_60;
+                    }
+                }
+
+                textarea {
+                    width: 100%;
+                    height: 152px;
+                    background-color: $gray200;
+                    padding: 12px;
+                    margin-top: 7px;
+                    @include Body();
+                    line-height: 24px;
+                    color: $gray900_87;
+                    border-radius: 8px;
+                    resize: none;
+
+                    &::placeholder {
+                        color: $gray900_60;
+                    }
+                }
+            }
+
+        }
+
+        .Modal_insideBox_footer {
+            margin-top: 24px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 16px;
+
+            button {
+                &:first-of-type {
+                    @include GhostBtn();
+                    background-color: transparent;
+                    border-radius: 56px;
+                    border: 1px solid transparent;
+                    transition: all .4s;
+
+                    &:hover {
+                        border: 1px solid $gray600;
+                    }
+                }
+
+                &:last-of-type {
+                    @include PrimaryButton();
+                }
+            }
+        }
+    }
+}
