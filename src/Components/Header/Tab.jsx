@@ -1,5 +1,5 @@
-import React from "react";
 import "./style.scss";
+import { NavLink } from "react-router-dom";
 
 const Tab = () => {
   return (
@@ -7,14 +7,13 @@ const Tab = () => {
       <h1>Your notes</h1>
       <div className="header_tab_box">
         <div className="header_tab_box_item">
-          <a href="">All</a>
-          <a href="">Personal</a>
-          <a href="">Home</a>
-          <a href="">Business</a>
+          <NavLink to="/">All</NavLink>
+          <NavLink to="/personal">Personal</NavLink>
+          <NavLink to="/home">Home</NavLink>
+          <NavLink to="/business">Business</NavLink>
         </div>
         <div className="header_tab_box_actionBtn">
-          <input type="checkbox" id="complete" />
-          <label htmlFor="complete">Show only completed notes</label>
+          <NavLink to="/completed">Completed notes</NavLink>
         </div>
       </div>
     </div>

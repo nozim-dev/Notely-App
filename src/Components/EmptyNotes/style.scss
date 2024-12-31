@@ -1,8 +1,10 @@
 @import "../../style/style.scss";
+@import "../../style/variables";
 
 .EmptyNotes {
     width: 100%;
     max-width: 640px;
+    height: 100vh;
     margin: auto;
     margin-top: 80px;
 

@@ -147,11 +147,23 @@
 
 .Container {
     position: relative;
+
+
 }
 
 main {
     background-color: $gray200;
     padding-top: 30px;
+    height: 100vh;
+    min-height: 800px;
+
+    @media screen and (max-width:1256px) {
+        padding: 40px 15px;
+    }
+
+    @media screen and (max-width:650px) {
+        min-height: 1200px;
+    }
 
     .cart_row {
         display: grid;
@@ -162,5 +174,13 @@ main {
         margin: auto;
         margin-top: 32px;
         padding-bottom: 124px;
+
+        @media screen and (max-width:998px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media screen and (max-width:650px) {
+            grid-template-columns: 1fr;
+        }
     }
 }

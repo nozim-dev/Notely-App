@@ -158,4 +158,66 @@
             }
         }
     }
+
+    .Modal_insideBoxDel {
+        width: 100%;
+        max-width: 402px;
+        background-color: white;
+        box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.15);
+        border-radius: 16px;
+        padding: 24px;
+
+        .Modal_insideBox_header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+
+            h1 {
+                @include Header_S();
+                line-height: 33.6px;
+                color: $gray900_87;
+            }
+
+            span {
+                @include IconBtn();
+            }
+        }
+
+        .Modal_insideBox_body {
+            margin-top: 24px;
+
+            p {
+                @include Body();
+                color: $gray900_87;
+                line-height: 24px;
+            }
+        }
+
+        .Modal_insideBox_footer {
+            margin-top: 24px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 16px;
+
+            button {
+                &:first-of-type {
+                    @include GhostBtn();
+                    background-color: transparent;
+                    border-radius: 56px;
+                    border: 1px solid transparent;
+                    transition: all .4s;
+
+                    &:hover {
+                        border: 1px solid $gray600;
+                    }
+                }
+
+                &:last-of-type {
+                    @include DangerBtn();
+                }
+            }
+        }
+    }
 }

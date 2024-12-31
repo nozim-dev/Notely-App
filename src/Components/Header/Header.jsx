@@ -1,10 +1,90 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import "./style.scss";
+import { NotesContext } from "../../Context/NotesProvider";
+import { NavLink } from "react-router-dom";
 
-const Header = ({ setIsModal }) => {
+const Header = () => {
+  const { notes, setNotes } = useContext(NotesContext);
+  const [originalNotes, setOriginalNotes] = useState([]); // Asl notelarni saqlash uchun
+
+  // Qidiruv inputi o'zgarganda ishlaydigan funksiya
+  const handleSearch = (e) => {
+    const value = e.target.value.toLowerCase();
+    if (originalNotes.length === 0) {
+      setOriginalNotes(notes); // Asl notelarni saqlash (birinchi marta)
+    }
+
+    if (value.trim() === "") {
+      setNotes(originalNotes); // Agar input bo'sh bo'lsa, asl notelarni tiklash
+    } else {
+      const filtered = originalNotes.filter(
+        (note) => note.title.toLowerCase().includes(value) // bu inputga kiritgan textimizni notelarning titleni ichidan qidiradi.
+      );
+      setNotes(filtered);
+    }
+  };
+
+  function handleChangeOpen() {
+    document
+      .querySelector(".menu_content")
+      .classList.add("menu_content_active");
+  }
+  function handleChangeClose() {
+    document
+      .querySelector(".menu_content")
+      .classList.remove("menu_content_active");
+  }
+
   return (
     <header>
       <div className="header_inside">
+        <div className="menu">
+          <div className="menu_icon" onClick={handleChangeOpen}>
+            <svg
+              width="28"
+              height="23"
+              viewBox="0 0 28 23"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M0.827637 2.40881C0.827637 1.4496 1.60524 0.671997 2.56445 0.671997H25.722C26.6812 0.671997 27.4588 1.4496 27.4588 2.40881C27.4588 3.36803 26.6812 4.14563 25.722 4.14563H2.56445C1.60524 4.14563 0.827637 3.36803 0.827637 2.40881ZM0.827637 11.6716C0.827637 10.7124 1.60524 9.9348 2.56445 9.9348H25.722C26.6812 9.9348 27.4588 10.7124 27.4588 11.6716C27.4588 12.6308 26.6812 13.4084 25.722 13.4084H2.56445C1.60524 13.4084 0.827637 12.6308 0.827637 11.6716ZM2.56445 19.1983C1.60524 19.1983 0.827637 19.9759 0.827637 20.9351C0.827637 21.8943 1.60524 22.6719 2.56445 22.6719H25.722C26.6812 22.6719 27.4588 21.8943 27.4588 20.9351C27.4588 19.9759 26.6812 19.1983 25.722 19.1983H2.56445Z"
+                fill="black"
+              />
+            </svg>
+          </div>
+          <div className="menu_content">
+            <div className="menu_content_header">
+              <div
+                className="menu_content_header_icon"
+                onClick={handleChangeClose}
+              >
+                <svg
+                  width="32"
+                  height="32"
+                  viewBox="0 0 32 32"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M16.2427 7.75738L7.75739 16.2427M16.2427 16.2426L7.75739 7.75732"
+                    stroke="#28303F"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </div>
+            </div>
+            <NavLink to="/">All</NavLink>
+            <NavLink to="/personal">Personal</NavLink>
+            <NavLink to="/home">Home</NavLink>
+            <NavLink to="/business">Business</NavLink>
+            <NavLink to="/completed">Completed notes</NavLink>
+          </div>
+        </div>
         <form action="">
           <span>
             <svg
@@ -21,9 +101,16 @@ const Header = ({ setIsModal }) => {
               />
             </svg>
           </span>
-          <input placeholder="Search" type="search" name="search" />
+          <input
+            placeholder="Search"
+            type="search"
+            name="search"
+            onChange={handleSearch} // Qidiruv funskiyasi
+          />
         </form>
-        <button onClick={() => setIsModal({ isActive: true, title: "Add" })}>
+        <button
+          onClick={() => data.setIsModal({ isActive: true, title: "Add" })}
+        >
           <span>
             <svg
               width="18"
