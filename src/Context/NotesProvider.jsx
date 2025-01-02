@@ -8,12 +8,12 @@ export const NotesProvider = ({ children }) => {
   const [isModal, setIsModal] = useState({
     isActive: false,
     title: "Add",
-    id: "",
+    id: null,
   });
   const [isModalDel, setIsModalDel] = useState({
     isActive: false,
     title: "Delete",
-    id: "",
+    id: null,
   });
 
   // Function to fetch data

@@ -4,7 +4,7 @@ import { NotesContext } from "../../Context/NotesProvider";
 import { NavLink } from "react-router-dom";
 
 const Header = () => {
-  const { notes, setNotes } = useContext(NotesContext);
+  const { notes, setNotes, setIsModal } = useContext(NotesContext);
   const [originalNotes, setOriginalNotes] = useState([]); // Asl notelarni saqlash uchun
 
   // Qidiruv inputi o'zgarganda ishlaydigan funksiya
@@ -108,9 +108,7 @@ const Header = () => {
             onChange={handleSearch} // Qidiruv funskiyasi
           />
         </form>
-        <button
-          onClick={() => data.setIsModal({ isActive: true, title: "Add" })}
-        >
+        <button onClick={() => setIsModal({ isActive: true, title: "Add" })}>
           <span>
             <svg
               width="18"

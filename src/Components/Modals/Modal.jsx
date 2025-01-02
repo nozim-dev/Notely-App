@@ -30,7 +30,15 @@ const Modal = () => {
           .then((response) => response.json())
           .then((message) => {
             setNotes((prev) => [...prev, message.data]);
+            setInputValues({
+              title: "",
+              category: "",
+              description: "",
+            });
           });
+        // .then(() => {
+        //   setInputValues({}); // Formni tozalash
+        // });
       } catch (error) {
         console.log(error);
       }
@@ -67,33 +75,39 @@ const Modal = () => {
           return note;
         })
       );
-      setIsModal((prev) => ({ ...prev, isActive: false }));
+      setIsModal(() => ({ ...prev, isActive: false }));
     }
   }
 
-  async function fetchData() {
+  function fetchData() {
     try {
-      const response = await fetch(
-        `http://localhost:1337/api/notes/${isModal.id}`
-      );
-      const note = await response.json();
-      console.log(note.data);
-      setInputValues({
-        title: note.data.title,
-        category: note.data.category,
-        description: note.data.description,
-      });
-      console.log(inputValues);
+      fetch(`http://localhost:1337/api/notes/${isModal.id}`)
+        .then((res) => res.json())
+        .then((note) => {
+          if (note?.data) {
+            setInputValues({
+              title: note.data.title || "",
+              category: note.data.category || "",
+              description: note.data.description || "",
+            });
+          }
+        });
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   }
 
   useEffect(() => {
-    if (isModal.isActive) {
+    if (isModal.title == "Edit" && isModal.id) {
       fetchData();
+    } else {
+      setInputValues({
+        title: "",
+        category: "",
+        description: "",
+      });
     }
-  }, [isModal]);
+  }, [isModal.id]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -109,7 +123,9 @@ const Modal = () => {
       <form action="" onSubmit={PostData} className="Modal_insideBox">
         <div className="Modal_insideBox_header">
           <h1>{isModal.title} Note</h1>
-          <span onClick={() => setIsModal({ isActive: false })}>
+          <span
+            onClick={() => setIsModal((prev) => ({ ...prev, isActive: false }))}
+          >
             <svg
               width="24"
               height="24"
@@ -133,7 +149,7 @@ const Modal = () => {
                 id="title"
                 type="text"
                 placeholder="Add title"
-                defaultValue={inputValues.title}
+                value={inputValues.title || ""}
                 onChange={handleChange}
               />
             </div>
@@ -162,14 +178,16 @@ const Modal = () => {
               name="description"
               id="description"
               placeholder="Add description"
-              defaultValue={inputValues.description}
-              maxLength={200}
+              value={inputValues.description || ""}
               onChange={handleChange}
+              maxLength={200}
             ></textarea>
           </div>
         </div>
         <div className="Modal_insideBox_footer">
-          <button onClick={() => setIsModal({ isActive: false })}>
+          <button
+            onClick={() => setIsModal((prev) => ({ ...prev, isActive: false }))}
+          >
             Cancel
           </button>
           <button>{isModal.title}</button>
